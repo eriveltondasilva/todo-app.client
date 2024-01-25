@@ -12,32 +12,32 @@ async function api(method: string, url: string, data?: any): Promise<any> {
 
 // -----------------------------------------------------------------------------
 export async function getAllTasks() {
-  const url = '/tasks'
+  const url = '/api/tasks'
   return api('get', url)
 }
 
 // -----------------------------------------------------------------------------
 export async function createTask(formData: any) {
   const data = Object.fromEntries(formData)
-  const url = '/tasks'
+  const url = '/api/tasks'
   return api('post', url, data)
 }
 
 // ----------------------------------------------------------------------------
 export async function updateTask(id: number, data: any) {
-  const url = `/tasks/${id}`
+  const url = `/api/tasks/${id}`
   return api('put', url, data)
 }
 
 // ----------------------------------------------------------------------------
 export async function deleteTask(id: number) {
-  const url = `/tasks/${id}`
+  const url = `/api/tasks/${id}`
   return api('delete', url)
 }
 
 // ----------------------------------------------------------------------------
 export async function deleteTasks(ids: number[]) {
-  const url = '/tasks'
+  const url = '/api/tasks'
   const data = { ids }
   return api('delete', url, data)
 }
