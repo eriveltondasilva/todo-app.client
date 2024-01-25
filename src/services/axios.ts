@@ -3,7 +3,7 @@ import axios from 'axios'
 
 // ------------------------------------
 const axiosApi = axios.create({
-  baseURL: API_URL,
+  baseURL: `${API_URL}/api/`,
 })
 
 export default axiosApi
