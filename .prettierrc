@@ -21,6 +21,6 @@
     }
   ],
 
-  "tailwindFunctions": ["tw", "twJoin", "twMerge"],
+  "tailwindFunctions": ["clsx","tw", "twJoin", "twMerge"],
   "plugins": ["prettier-plugin-tailwindcss"]
 }
