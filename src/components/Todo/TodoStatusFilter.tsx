@@ -1,5 +1,5 @@
-import TodoFooter from './TodoFooter'
 import { clsx } from 'clsx'
+import TodoFooter from './TodoFooter'
 
 export default function TodoStatusFilter() {
   return (

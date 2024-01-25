@@ -1,4 +1,4 @@
-import closeIcon from '@/assets/images/icon-cross.svg'
+import closeIcon from '@/assets/icons/icon-cross.svg'
 import Image from 'next/image'
 
 // ============================================================================
