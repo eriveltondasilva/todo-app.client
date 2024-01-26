@@ -1,6 +1,3 @@
-import { useState } from 'react'
-
-import type { Task } from '@/types/task'
 import useTaskContext from '@/hooks/useTaskContext'
 import * as api from '@/services/taskApi'
 
@@ -9,12 +6,15 @@ import FooterLeft from './FooterLeft'
 import FooterRight from './FooterRight'
 import FooterRoot from './FooterRoot'
 
+type Props = {
+  footerType?: boolean
+  status: string
+  actions: any
+}
+
 // ==============================================================================
-type Props = { footerType?: boolean }
-export default function TodoFooter({ footerType }: Props) {
+export default function TodoFooter({ footerType, status, actions }: Props) {
   const { tasks, setTasks } = useTaskContext()
-  const [tempTasks, setTempTasks] = useState<Task[] | null>([])
-  const [btnFooterStatus, setBtnFooterStatus] = useState<'all' | 'active' | 'completed'>('all')
 
   const tasksLeft = tasks?.filter((item) => !item.is_completed).length || 0
 
@@ -32,46 +32,12 @@ export default function TodoFooter({ footerType }: Props) {
 
     setTasks((prevState) => prevState?.filter((item) => !completedTasksIds?.includes(item.id))!)
   }
-
   // ----------------------------------
-  function filterTasks(filterFunction: (item: Task) => void) {
-    if (tempTasks?.length !== 0) {
-      setTasks(tempTasks)
-      setTempTasks([])
-    }
-
-    setTempTasks(tasks)
-    setTasks((prev) => prev?.filter(filterFunction) || [])
-  }
-
-  // ----------------------------------
-  async function handleClickAllTasks() {
-    const res = await api.getAllTasks()
-    setTasks(res.data)
-    setTempTasks([])
-    setBtnFooterStatus('all')
-  }
-
-  function handleClickActiveTasks() {
-    filterTasks((item) => !item.is_completed)
-    setBtnFooterStatus('active')
-  }
-
-  function handleClickCompletedTasks() {
-    filterTasks((item) => item.is_completed)
-    setBtnFooterStatus('completed')
-  }
-
-  const handleActions = {
-    handleClickAllTasks,
-    handleClickActiveTasks,
-    handleClickCompletedTasks,
-  }
 
   if (footerType) {
     return (
       <FooterRoot>
-        <FooterCenter center status={btnFooterStatus} actions={handleActions} />
+        <FooterCenter center status={status} actions={actions} />
       </FooterRoot>
     )
   }
@@ -80,7 +46,7 @@ export default function TodoFooter({ footerType }: Props) {
   return (
     <FooterRoot>
       <FooterLeft tasksNumber={tasksLeft} />
-      <FooterCenter status={btnFooterStatus} actions={handleActions} />
+      <FooterCenter status={status} actions={actions} />
       <FooterRight onClick={handleClearCompleted} />
     </FooterRoot>
   )

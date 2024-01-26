@@ -13,9 +13,9 @@ type FooterCenterProps = {
 // ============================================================================
 export default function FooterCenter({ center, status, actions }: FooterCenterProps) {
   const btn = [
-    { title: 'All', onClick: actions.handleClickAllTasks },
-    { title: 'Active', onClick: actions.handleClickActiveTasks },
-    { title: 'Completed', onClick: actions.handleClickCompletedTasks },
+    { title: 'All', onClick: actions?.handleClickAllTasks },
+    { title: 'Active', onClick: actions?.handleClickActiveTasks },
+    { title: 'Completed', onClick: actions?.handleClickCompletedTasks },
   ]
 
   return (

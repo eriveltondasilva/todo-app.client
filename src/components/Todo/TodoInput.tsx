@@ -2,7 +2,7 @@ import { clsx } from 'clsx'
 import Image from 'next/image'
 
 import checkIcon from '@/assets/icons/icon-check.svg'
-import { Task } from '@/types/task'
+import type { Task } from '@/types/task'
 
 // ============================================================================
 type Props = { items: Task; onUpdateClick: () => void }
