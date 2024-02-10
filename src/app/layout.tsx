@@ -1,7 +1,10 @@
-import { TaskProvider } from '@/contexts/taskContext'
-import { clsx } from 'clsx'
 import type { Metadata } from 'next'
+
+import { clsx } from 'clsx'
 import { Josefin_Sans } from 'next/font/google'
+
+import { AuthProvider } from '@/contexts/authContext'
+import { TaskProvider } from '@/contexts/taskContext'
 
 import '@/sass/globals.scss'
 const josefinSans = Josefin_Sans({ subsets: ['latin'] })
@@ -26,7 +29,9 @@ export default function RootLayout({ children }: Props) {
             'transition ease-out',
             'bg-background-light dark:bg-background-dark',
           )}>
-          <TaskProvider>{children}</TaskProvider>
+          <AuthProvider>
+            <TaskProvider>{children}</TaskProvider>
+          </AuthProvider>
         </div>
       </body>
     </html>

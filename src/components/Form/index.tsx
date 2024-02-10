@@ -9,15 +9,17 @@ import FormCircle from './FormCircle'
 import FormInput from './FormInput'
 import FormRoot from './FormRoot'
 
-// const FormInputCreateTask = {
-//   Root: FormRoot,
-//   Circle: FormCircle,
-//   Input: FormInput,
-//   Button: FormButton,
-// }
+const FormInputCreateTask = {
+  Root: FormRoot,
+  Circle: FormCircle,
+  Input: FormInput,
+  Button: FormButton,
+}
+
+export default FormInputCreateTask
 
 // ==============================================================
-export default function Form() {
+function Form() {
   const { setTasks } = useTaskContext()
 
   async function handleSubmit(e: React.FormEvent<EventTarget>) {

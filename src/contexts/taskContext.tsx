@@ -2,12 +2,12 @@
 import type { Task } from '@/types/task'
 import { createContext, useState } from 'react'
 
-type TaskContext = {
+type TaskContextType = {
   tasks: Task[] | null
   setTasks: React.Dispatch<React.SetStateAction<Task[] | null>>
 }
 
-export const TaskContext = createContext<TaskContext | null>(null)
+export const TaskContext = createContext<TaskContextType | null>(null)
 
 // ============================================================================
 type Props = { children: React.ReactNode }
