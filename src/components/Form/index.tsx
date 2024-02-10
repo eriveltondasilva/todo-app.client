@@ -2,12 +2,19 @@
 import toast, { Toaster } from 'react-hot-toast'
 
 import useTaskContext from '@/hooks/useTaskContext'
-import * as api from '@/services/taskApi'
+import { createTask } from '@/services/taskApi'
 
 import FormButton from './FormButton'
 import FormCircle from './FormCircle'
 import FormInput from './FormInput'
 import FormRoot from './FormRoot'
+
+// const FormInputCreateTask = {
+//   Root: FormRoot,
+//   Circle: FormCircle,
+//   Input: FormInput,
+//   Button: FormButton,
+// }
 
 // ==============================================================
 export default function Form() {
@@ -20,7 +27,7 @@ export default function Form() {
 
     if (!formData?.get('title')) return
 
-    const res = await api.createTask(formData)
+    const res = await createTask(formData)
 
     //
     if (res?.status !== 201) return
@@ -31,7 +38,7 @@ export default function Form() {
   }
 
   return (
-    <FormRoot onSubmit={handleSubmit}>
+    <FormRoot>
       <FormCircle />
       <FormInput />
       <FormButton />

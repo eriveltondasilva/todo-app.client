@@ -15,7 +15,7 @@ export default function LoginIndex() {
   return (
     <LoginRoot>
       <LoginTitle />
-      <LoginForm onSubmit={handleSubmit}>
+      <LoginForm>
         <LoginInputEmail />
         <LoginInputPassword />
         <FormButton />
