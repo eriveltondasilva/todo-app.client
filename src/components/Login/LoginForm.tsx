@@ -1,5 +1,5 @@
 type Props = {
-  // onSubmit: (e: React.FormEvent<EventTarget>) => void
+  onSubmit: (e: React.FormEvent<EventTarget>) => void
   children: React.ReactNode
 }
 
