@@ -1,13 +1,14 @@
-import type { Metadata } from 'next'
-
-import { clsx } from 'clsx'
-import { Josefin_Sans } from 'next/font/google'
-
-import { AuthProvider } from '@/contexts/authContext'
-import { TaskProvider } from '@/contexts/taskContext'
-
 import '@/sass/globals.scss'
+import type { Metadata } from 'next'
+// import { ReactTreeProvider } from 'react-tree-provider'
+
+// import { AuthProvider } from '@/contexts/authContext'
+// import { TaskProvider } from '@/contexts/taskContext'
+import { Josefin_Sans } from 'next/font/google'
+// ----------------------------------------------------------------------------
+
 const josefinSans = Josefin_Sans({ subsets: ['latin'] })
+// const Providers = ReactTreeProvider([[AuthProvider], [TaskProvider]])
 
 export const metadata: Metadata = {
   title: 'Todo App',
@@ -20,19 +21,19 @@ export default function RootLayout({ children }: Props) {
   return (
     <html lang='en'>
       <body className={josefinSans.className + ' dark'}>
-        <div
+        {/* <div
           className={clsx(
             'min-h-dvh w-full',
-            'sm:bg-desktop-light md:dark:bg-desktop-dark',
-            'bg-mobile-light dark:bg-mobile-dark',
-            'bg-contain bg-no-repeat',
             'transition ease-out',
+            'sm:bg-desktop-light md:dark:bg-desktop-dark',
+            'bg-mobile-light bg-contain bg-no-repeat dark:bg-mobile-dark',
             'bg-background-light dark:bg-background-dark',
-          )}>
-          <AuthProvider>
+          )}> */}
+        {/* <AuthProvider>
             <TaskProvider>{children}</TaskProvider>
-          </AuthProvider>
-        </div>
+          </AuthProvider> */}
+        {/* <Providers>{children}</Providers> */}
+        {/* </div> */}
       </body>
     </html>
   )

@@ -4,23 +4,30 @@
   "bracketSpacing": true,
   "endOfLine": "lf",
   "jsxSingleQuote": true,
-  "printWidth": 100,
+  "printWidth": 80,
   "semi": false,
   "singleAttributePerLine": false,
   "singleQuote": true,
   "tabWidth": 2,
   "trailingComma": "all",
   "useTabs": false,
-
   "overrides": [
     {
-      "files": [".prettier*"],
+      "files": [
+        ".prettier*"
+      ],
       "options": {
         "parser": "json"
       }
     }
   ],
-
-  "tailwindFunctions": ["clsx","tw", "twJoin", "twMerge"],
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "tailwindFunctions": [
+    "clsx",
+    "tw",
+    "twJoin",
+    "twMerge"
+  ],
+  "plugins": [
+    "prettier-plugin-tailwindcss"
+  ]
 }
