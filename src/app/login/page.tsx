@@ -1,6 +1,10 @@
-// import Login from '@/components/Login'
+import Form from './form'
 
-// // =============================================================================
-// export default function LoginPage() {
-//   return <Login />
-// }
+// ============================================================================
+export default function LoginPage() {
+  return (
+    <>
+      <Form />
+    </>
+  )
+}
