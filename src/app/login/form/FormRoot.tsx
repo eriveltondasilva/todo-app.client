@@ -1,7 +1,7 @@
 import { clsx } from 'clsx'
 
 type Props = {
-  onSubmit: (e: React.FormEvent<EventTarget>) => void
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   children: React.ReactNode
 }
 

@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 
 import useTaskContext from '@/hooks/useTaskContext'
-import { deleteTask, updateTask } from '@/services/taskApi'
+import TaskService from '@/services/task.service'
 
 import TodoFooter from './TodoFooter'
 import TodoItem from './TodoItem'
@@ -10,7 +10,7 @@ import TodoList from './TodoList'
 import TodoRoot from './TodoRoot'
 import TodoStatusFilter from './TodoStatusFilter'
 
-import { data } from '@/data'
+const taskService = new TaskService()
 
 // ============================================================================
 export default function Todos() {
@@ -19,25 +19,25 @@ export default function Todos() {
     'all',
   )
 
-  useEffect(() => {
-    setTasks(data)
-  }, [setTasks])
-
   // useEffect(() => {
-  //   async function getAllTasks() {
-  //     const res = await getAllTasks()
-  //     setTasks(res?.data)
-  //   }
-
-  //   getAllTasks()
+  //   setTasks(data)
   // }, [setTasks])
+
+  useEffect(() => {
+    async function getAllTasks() {
+      const res = await taskService.getAllTasks()
+      setTasks(res.data)
+    }
+
+    getAllTasks()
+  }, [setTasks])
 
   // ==================================
   async function handleUpdateTask(id: number) {
     const body = {
       is_completed: !tasks?.find((item) => item.id === id)?.is_completed,
     }
-    const task = await updateTask(id, body)
+    const task = await taskService.updateTask(id, body)
     if (task?.status !== 200) return
     setTasks(
       (prevState) =>
@@ -46,7 +46,7 @@ export default function Todos() {
   }
 
   async function handleDeleteTask(id: number) {
-    const task = await deleteTask(id)
+    const task = await taskService.deleteTask(id)
     if (task?.status !== 204) return
     setTasks((prevState) => prevState?.filter((item) => item.id !== id)!)
   }

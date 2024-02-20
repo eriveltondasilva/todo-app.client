@@ -7,20 +7,27 @@ import sunIcon from '@/assets/icons/icon-sun.svg'
 
 // ============================================================================
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isDarkMode, setIsDarkMode] = useState(false)
 
-  const moon = <Image src={moonIcon} alt='moon icon' />
-  const sun = <Image src={sunIcon} alt='sun icon' />
-  const btnText = isOpen ? moon : sun
+  function toggleDarkMode() {
+    setIsDarkMode((prevMode) => !prevMode)
+  }
 
   useEffect(() => {
     document.body.classList.toggle('dark')
-  }, [isOpen])
+  }, [isDarkMode])
 
   return (
     <header className='flex justify-between'>
-      <h1 className='text-3xl font-semibold tracking-[0.5rem] text-white'>TODO</h1>
-      <button onClick={() => setIsOpen(!isOpen)}>{btnText}</button>
+      <h1 className='text-3xl font-semibold tracking-[0.5rem] text-white'>
+        TODO
+      </h1>
+      <button onClick={toggleDarkMode}>
+        <Image
+          src={isDarkMode ? moonIcon : sunIcon}
+          alt={isDarkMode ? 'moon icon' : 'sun icon'}
+        />
+      </button>
     </header>
   )
 }

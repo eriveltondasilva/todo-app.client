@@ -1,31 +1,54 @@
 'use client'
+import { useRouter } from 'next/navigation'
+import toast, { Toaster } from 'react-hot-toast'
+
 import Button from '@/components/Button'
 import Input from '@/components/Input'
+import AuthService from '@/services/auth.service'
 import FormRoot from './FormRoot'
 import FormTitle from './FormTitle'
 
-// import { login } from '@/services/authApi'
-// import toast, { Toaster } from 'react-hot-toast'
+const authService = new AuthService()
 
-// ===============================================================================
+// ============================================================================
 export default function FormIndex() {
   // const { setUser } = useAuthContext()
+  const router = useRouter()
 
-  async function handleSubmit(e: React.FormEvent<EventTarget>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    // const formData = new FormData(e.currentTarget as HTMLFormElement)
-    // const res = await login(formData)
-    // if (!res?.ok) {
-    //   toast.error(res.message)
-    // }
-    // setUser(res?.data.user)
-    //
-    console.log('login')
+
+    try {
+      // get form data
+      const formData = new FormData(e.currentTarget)
+
+      const res = await authService.login(formData)
+
+      console.log(res.data.user)
+      router.push('/')
+    } catch (error: any) {
+      if (error.response) {
+        const { email, password } = error.response.data.validations
+
+        if (email) {
+          toast.error(email)
+          return
+        }
+
+        if (password) {
+          toast.error(password)
+        }
+      }
+
+      console.error(error.message)
+    }
   }
 
   return (
     <FormRoot onSubmit={handleSubmit}>
       <FormTitle>Sign in to your account</FormTitle>
+
+      {/* input with type email */}
       <Input
         id='email'
         name='email'
@@ -35,6 +58,8 @@ export default function FormIndex() {
         autoFocus
         required
       />
+
+      {/* input with type password */}
       <Input
         id='password'
         name='password'
@@ -43,9 +68,11 @@ export default function FormIndex() {
         placeholder='••••••••'
         required
       />
+
+      {/* button with type submit */}
       <Button type='submit'>Sign in</Button>
 
-      {/* <Toaster /> */}
+      <Toaster />
     </FormRoot>
   )
 }

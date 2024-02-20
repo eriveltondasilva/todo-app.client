@@ -4,14 +4,17 @@ import Image from 'next/image'
 import checkIcon from '@/assets/icons/icon-check.svg'
 import type { Task } from '@/types/task'
 
-// ============================================================================
 type Props = { items: Task; onUpdateClick: () => void }
+
+// ============================================================================
 export default function TodoInput({ items, onUpdateClick }: Props) {
   const { id, is_completed } = items
 
   return (
     <div className='mr-3 inline-flex items-center'>
-      <label className='relative flex cursor-pointer items-center rounded-full' htmlFor='todo'>
+      <label
+        className='relative flex cursor-pointer items-center rounded-full'
+        htmlFor='todo'>
         <input
           id={id.toString()}
           defaultChecked={is_completed}

@@ -1,15 +1,17 @@
 import useTaskContext from '@/hooks/useTaskContext'
-import * as api from '@/services/taskApi'
+import TaskService from '@/services/task.service'
 
 import FooterCenter from './FooterCenter'
 import FooterLeft from './FooterLeft'
 import FooterRight from './FooterRight'
 import FooterRoot from './FooterRoot'
 
+const taskService = new TaskService()
+
 type Props = {
   footerType?: boolean
-  status: string
-  actions: any
+  status?: string
+  actions?: any
 }
 
 // ==============================================================================
@@ -22,15 +24,20 @@ export default function TodoFooter({ footerType, status, actions }: Props) {
   async function handleClearCompleted() {
     if (!tasks?.length) return
 
-    const completedTasksIds = tasks?.filter((item) => item.is_completed).map((item) => item.id)
+    const completedTasksIds = tasks
+      ?.filter((item) => item.is_completed)
+      .map((item) => item.id)
 
     if (!completedTasksIds?.length) return
 
-    const res = await api.deleteTasks(completedTasksIds)
+    const res = await taskService.deleteTasks(completedTasksIds)
 
     if (res?.status !== 204) return
 
-    setTasks((prevState) => prevState?.filter((item) => !completedTasksIds?.includes(item.id))!)
+    setTasks(
+      (prevState) =>
+        prevState?.filter((item) => !completedTasksIds?.includes(item.id))!,
+    )
   }
   // ----------------------------------
 
