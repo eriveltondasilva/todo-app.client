@@ -1,5 +1,5 @@
-import { clsx } from 'clsx'
 import Image from 'next/image'
+import { twJoin } from 'tailwind-merge'
 
 import checkIcon from '@/assets/icons/icon-check.svg'
 import type { Task } from '@/types/task'
@@ -17,7 +17,7 @@ export default function TodoInput({ items, onUpdateClick }: Props) {
           defaultChecked={is_completed}
           onClick={onUpdateClick}
           type='checkbox'
-          className={clsx(
+          className={twJoin(
             "before:content[''] peer relative h-6 w-6 cursor-pointer appearance-none border",
             'before:absolute before:left-2/4 before:top-2/4 before:block',
             'before:h-12 before:w-12',
@@ -30,7 +30,7 @@ export default function TodoInput({ items, onUpdateClick }: Props) {
           )}
         />
         <span
-          className={clsx(
+          className={twJoin(
             'pointer-events-none absolute',
             'left-2/4 top-2/4',
             '-translate-x-2/4 -translate-y-2/4',

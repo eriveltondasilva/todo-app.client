@@ -1,5 +1,5 @@
 import type { Task } from '@/types/task'
-import { clsx } from 'clsx'
+import { twJoin } from 'tailwind-merge'
 
 // ============================================================================
 type Props = { items: Task }
@@ -9,7 +9,7 @@ export default function TodoLabel({ items }: Props) {
   return (
     <label
       htmlFor={id.toString()}
-      className={clsx(
+      className={twJoin(
         'text-md cursor-pointer font-normal',
         is_completed && 'text-gray-400 line-through',
       )}>

@@ -1,4 +1,4 @@
-import { clsx } from 'clsx'
+import { twJoin } from 'tailwind-merge'
 
 type FooterCenterProps = {
   center?: boolean
@@ -19,7 +19,8 @@ export default function FooterCenter({ center, status, actions }: FooterCenterPr
   ]
 
   return (
-    <div className={clsx('space-x-2', center ? 'mx-auto' : 'hidden justify-self-center sm:block')}>
+    <div
+      className={twJoin('space-x-2', center ? 'mx-auto' : 'hidden justify-self-center sm:block')}>
       {btn.map(({ title, onClick }) => (
         <FooterButton key={title} title={title} status={status} onClick={onClick} />
       ))}
@@ -32,7 +33,7 @@ type FooterButtonProps = { title: string; status: string; onClick: () => void }
 function FooterButton({ title, status, onClick }: FooterButtonProps) {
   return (
     <button
-      className={clsx(
+      className={twJoin(
         status === title.toLowerCase()
           ? 'text-blue-400'
           : 'hover:text-gray-900 dark:hover:text-gray-100',

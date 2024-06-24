@@ -1,9 +1,9 @@
 import { TaskProvider } from '@/contexts/taskContext'
-import { clsx } from 'clsx'
 import type { Metadata } from 'next'
 import { Josefin_Sans } from 'next/font/google'
+import { twJoin } from 'tailwind-merge'
 
-import '@/sass/globals.scss'
+import '@/globals.scss'
 const josefinSans = Josefin_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default function RootLayout({ children }: Props) {
     <html lang='en'>
       <body className={josefinSans.className + ' dark'}>
         <div
-          className={clsx(
+          className={twJoin(
             'min-h-dvh w-full',
             'sm:bg-desktop-light md:dark:bg-desktop-dark',
             'bg-mobile-light dark:bg-mobile-dark',

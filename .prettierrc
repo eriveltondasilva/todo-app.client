@@ -6,11 +6,9 @@
   "jsxSingleQuote": true,
   "printWidth": 100,
   "semi": false,
-  "singleAttributePerLine": false,
   "singleQuote": true,
   "tabWidth": 2,
   "trailingComma": "all",
-  "useTabs": false,
 
   "overrides": [
     {
@@ -21,6 +19,6 @@
     }
   ],
 
-  "tailwindFunctions": ["clsx","tw", "twJoin", "twMerge"],
+  "tailwindFunctions": ["tw", "twJoin", "twMerge"],
   "plugins": ["prettier-plugin-tailwindcss"]
 }
