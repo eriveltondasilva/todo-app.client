@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 
 import useTaskContext from '@/hooks/useTaskContext'
-import * as api from '@/services/taskApi'
+import * as api from '@/services/tasks.service'
 
 import TodoFooter from './TodoFooter'
 import TodoItem from './TodoItem'

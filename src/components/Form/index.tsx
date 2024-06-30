@@ -2,7 +2,7 @@
 import toast, { Toaster } from 'react-hot-toast'
 
 import useTaskContext from '@/hooks/useTaskContext'
-import * as api from '@/services/taskApi'
+import * as api from '@/services/tasks.service'
 
 import FormButton from './FormButton'
 import FormCircle from './FormCircle'

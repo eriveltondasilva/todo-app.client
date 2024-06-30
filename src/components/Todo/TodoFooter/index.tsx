@@ -1,5 +1,5 @@
 import useTaskContext from '@/hooks/useTaskContext'
-import * as api from '@/services/taskApi'
+import * as api from '@/services/tasks.service'
 
 import FooterCenter from './FooterCenter'
 import FooterLeft from './FooterLeft'
