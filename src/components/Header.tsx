@@ -9,9 +9,11 @@ import sunIcon from '@/assets/icons/icon-sun.svg'
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
-  const moon = <Image src={moonIcon} alt='moon icon' />
-  const sun = <Image src={sunIcon} alt='sun icon' />
-  const btnText = isOpen ? moon : sun
+  const btnText = isOpen ? (
+    <Image src={moonIcon} alt='moon icon' />
+  ) : (
+    <Image src={sunIcon} alt='sun icon' />
+  )
 
   useEffect(() => {
     document.body.classList.toggle('dark')

@@ -10,7 +10,7 @@ import TodoList from './TodoList'
 import TodoRoot from './TodoRoot'
 import TodoStatusFilter from './TodoStatusFilter'
 
-import { todos } from '@/data'
+import todos from '@/data.json'
 
 // ============================================================================
 export default function Todos() {

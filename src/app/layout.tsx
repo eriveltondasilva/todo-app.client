@@ -1,5 +1,6 @@
-import { TaskProvider } from '@/contexts/taskContext'
 import type { Metadata } from 'next'
+
+import { TaskProvider } from '@/contexts/taskContext'
 import { Josefin_Sans } from 'next/font/google'
 import { twJoin } from 'tailwind-merge'
 
@@ -16,7 +17,7 @@ type Props = { children: React.ReactNode }
 export default function RootLayout({ children }: Props) {
   return (
     <html lang='en'>
-      <body className={josefinSans.className + ' dark'}>
+      <body className={`${josefinSans.className} dark`}>
         <div
           className={twJoin(
             'min-h-dvh w-full',
