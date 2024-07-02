@@ -21,5 +21,5 @@
   ],
 
   "tailwindFunctions": ["tw", "twJoin", "twMerge"],
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "plugins": ["prettier-plugin-organize-attributes", "prettier-plugin-tailwindcss"]
 }

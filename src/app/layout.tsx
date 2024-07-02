@@ -1,10 +1,13 @@
+import '@/globals.scss'
+
 import type { Metadata } from 'next'
 
-import { TaskProvider } from '@/contexts/taskContext'
 import { Josefin_Sans } from 'next/font/google'
+import { Toaster } from 'react-hot-toast'
 import { twJoin } from 'tailwind-merge'
 
-import '@/globals.scss'
+import { TaskProvider } from '@/contexts/taskContext'
+
 const josefinSans = Josefin_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -29,6 +32,7 @@ export default function RootLayout({ children }: Props) {
           )}>
           <TaskProvider>{children}</TaskProvider>
         </div>
+        <Toaster />
       </body>
     </html>
   )
