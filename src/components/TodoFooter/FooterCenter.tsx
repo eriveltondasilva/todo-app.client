@@ -3,46 +3,49 @@ import { twJoin } from 'tailwind-merge'
 type FooterCenterProps = {
   center?: boolean
   status: string
-  actions: {
-    handleClickAllTasks: () => void
-    handleClickCompletedTasks: () => void
-    handleClickActiveTasks: () => void
-  }
+  onClick: () => void
 }
 
 // ============================================================================
 export default function FooterCenter({
   center,
   status,
-  actions,
+  onClick,
 }: FooterCenterProps) {
-  const btn = [
-    { title: 'All', onClick: actions?.handleClickAllTasks },
-    { title: 'Active', onClick: actions?.handleClickActiveTasks },
-    { title: 'Completed', onClick: actions?.handleClickCompletedTasks },
-  ]
-
   return (
     <div
       className={twJoin(
         'space-x-2',
         center ? 'mx-auto' : 'hidden justify-self-center sm:block',
       )}>
-      {btn.map(({ title, onClick }) => (
-        <FooterButton
-          key={title}
-          title={title}
-          status={status}
-          onClick={onClick}
-        />
-      ))}
+      <FooterButton
+        title='All'
+        status={status}
+        onClick={() => onclick('all')}
+      />
+      <FooterButton
+        title='Active'
+        status={status}
+        onClick={() => onclick('active')}
+      />
+      <FooterButton
+        title='Completed'
+        status={status}
+        onClick={() => onclick('completed')}
+      />
     </div>
   )
 }
 
-// ----------------------------------------------------------------------------
-type FooterButtonProps = { title: string; status: string; onClick: () => void }
-function FooterButton({ title, status, onClick }: FooterButtonProps) {
+function FooterButton({
+  title,
+  status,
+  onClick,
+}: {
+  title: string
+  status: string
+  onClick: () => void
+}) {
   return (
     <button
       className={twJoin(

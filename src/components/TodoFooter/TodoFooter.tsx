@@ -14,8 +14,7 @@ export function FooterRoot({ children }: FooterRootProps) {
   )
 }
 
-type FooterRightProps = { onClick: () => void }
-export function FooterRight({ onClick }: FooterRightProps) {
+export function FooterRight({ onClick }: { onClick: () => void }) {
   return (
     <div className='justify-self-end'>
       <button
@@ -27,8 +26,7 @@ export function FooterRight({ onClick }: FooterRightProps) {
   )
 }
 
-type FooterLeftProps = { tasksNumber: number }
-export function FooterLeft({ tasksNumber }: FooterLeftProps) {
+export function FooterLeft({ tasksNumber }: { tasksNumber: number }) {
   const text =
     tasksNumber > 1
       ? `${tasksNumber} items left`

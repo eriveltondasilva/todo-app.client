@@ -1,41 +1,38 @@
 import useTaskContext from '@/hooks/useTaskContext'
 
 import FooterCenter from './FooterCenter'
-import { FooterRight, FooterRoot, FooterLeft } from './TodoFooter'
+import { FooterLeft, FooterRight, FooterRoot } from './TodoFooter'
 
 type Props = {
   footerType?: boolean
   status: string
-  actions: any
+  onClick: () => void
 }
 
 // ==============================================================================
-export function TodoFooter({ footerType, status, actions }: Props) {
+export function TodoFooter({ footerType, status, onClick }: Props) {
   const { tasks, setTasks } = useTaskContext()
 
   const tasksLeft = tasks?.filter((item) => !item.is_completed).length || 0
 
   // ----------------------------------
   async function handleClearCompleted() {
-    if (!tasks?.length) return
-
-    const completedTasksIds = tasks
-      ?.filter((item) => item.is_completed)
-      .map((item) => item.id)
-
-    if (!completedTasksIds?.length) return
-
-    setTasks(
-      (prevState) =>
-        prevState?.filter((item) => !completedTasksIds?.includes(item.id))!,
-    )
+    // if (!tasks?.length) return
+    // const completedTasksIds = tasks
+    //   ?.filter((item) => item.is_completed)
+    //   .map((item) => item.id)
+    // if (!completedTasksIds?.length) return
+    // setTasks(
+    //   (prevState) =>
+    //     prevState?.filter((item) => !completedTasksIds?.includes(item.id))!,
+    // )
   }
   // ----------------------------------
 
   if (footerType) {
     return (
       <FooterRoot>
-        <FooterCenter center status={status} actions={actions} />
+        <FooterCenter center status={status} onClick={onClick} />
       </FooterRoot>
     )
   }
@@ -43,7 +40,7 @@ export function TodoFooter({ footerType, status, actions }: Props) {
   return (
     <FooterRoot>
       <FooterLeft tasksNumber={tasksLeft} />
-      <FooterCenter status={status} actions={actions} />
+      <FooterCenter status={status} onClick={onClick} />
       <FooterRight onClick={handleClearCompleted} />
     </FooterRoot>
   )
