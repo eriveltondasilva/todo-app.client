@@ -1,17 +1,11 @@
 'use client'
-import type { Task } from '@/types/task'
 import { createContext, useState } from 'react'
 
-type TaskContext = {
-  tasks: Task[] | null
-  setTasks: React.Dispatch<React.SetStateAction<Task[] | null>>
-}
+import type { Task, TaskContext as TaskContextType } from '@/types/task'
 
-export const TaskContext = createContext<TaskContext | null>(null)
+export const TaskContext = createContext<TaskContextType | null>(null)
 
-// ============================================================================
-type Props = { children: React.ReactNode }
-export function TaskProvider({ children }: Props) {
+export function TaskProvider({ children }: { children: React.ReactNode }) {
   const [tasks, setTasks] = useState<Task[] | null>(null)
 
   return <TaskContext.Provider value={{ tasks, setTasks }}>{children}</TaskContext.Provider>

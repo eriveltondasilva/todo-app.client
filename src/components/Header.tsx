@@ -9,11 +9,15 @@ import sunIcon from '@/assets/icons/icon-sun.svg'
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
-  const btnText = isOpen ? (
-    <Image src={moonIcon} alt='moon icon' />
-  ) : (
-    <Image src={sunIcon} alt='sun icon' />
+  const btnText = (
+    <Image
+      className='hover:scale-110 active:scale-90'
+      src={isOpen ? moonIcon : sunIcon}
+      alt={`${isOpen ? 'moon' : 'sun'}icon`}
+    />
   )
+
+  const handleClick = () => setIsOpen(!isOpen)
 
   useEffect(() => {
     document.body.classList.toggle('dark')
@@ -22,7 +26,7 @@ export default function Header() {
   return (
     <header className='flex justify-between'>
       <h1 className='text-3xl font-semibold tracking-[0.5rem] text-white'>TODO</h1>
-      <button onClick={() => setIsOpen(!isOpen)}>{btnText}</button>
+      <button onClick={handleClick}>{btnText}</button>
     </header>
   )
 }

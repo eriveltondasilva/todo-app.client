@@ -1,10 +1,7 @@
 import useTaskContext from '@/hooks/useTaskContext'
-import * as api from '@/services/tasks.service'
 
 import FooterCenter from './FooterCenter'
-import FooterLeft from './FooterLeft'
-import FooterRight from './FooterRight'
-import FooterRoot from './FooterRoot'
+import { FooterRight, FooterRoot, FooterLeft } from './TodoFooter'
 
 type Props = {
   footerType?: boolean
@@ -13,7 +10,7 @@ type Props = {
 }
 
 // ==============================================================================
-export default function TodoFooter({ footerType, status, actions }: Props) {
+export function TodoFooter({ footerType, status, actions }: Props) {
   const { tasks, setTasks } = useTaskContext()
 
   const tasksLeft = tasks?.filter((item) => !item.is_completed).length || 0
@@ -25,10 +22,6 @@ export default function TodoFooter({ footerType, status, actions }: Props) {
     const completedTasksIds = tasks?.filter((item) => item.is_completed).map((item) => item.id)
 
     if (!completedTasksIds?.length) return
-
-    const res = await api.deleteTasks(completedTasksIds)
-
-    if (res?.status !== 204) return
 
     setTasks((prevState) => prevState?.filter((item) => !completedTasksIds?.includes(item.id))!)
   }
@@ -42,7 +35,6 @@ export default function TodoFooter({ footerType, status, actions }: Props) {
     )
   }
 
-  // ==>
   return (
     <FooterRoot>
       <FooterLeft tasksNumber={tasksLeft} />

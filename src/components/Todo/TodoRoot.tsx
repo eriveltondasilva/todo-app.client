@@ -1,4 +1,3 @@
-// ============================================================================
 type Props = { children: React.ReactNode }
 export default function TodoRoot({ children }: Props) {
   return (

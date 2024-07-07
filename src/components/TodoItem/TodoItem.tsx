@@ -1,12 +1,13 @@
 import Image from 'next/image'
 import { twJoin } from 'tailwind-merge'
 
-import checkIcon from '@/assets/icons/icon-check.svg'
 import type { Task } from '@/types/task'
 
-// ============================================================================
-type Props = { items: Task; onUpdateClick: () => void }
-export default function TodoInput({ items, onUpdateClick }: Props) {
+import checkIcon from '@/assets/icons/icon-check.svg'
+import closeIcon from '@/assets/icons/icon-cross.svg'
+
+type TodoInputProps = { items: Task; onUpdateClick: () => void }
+export function TodoInput({ items, onUpdateClick }: TodoInputProps) {
   const { id, is_completed } = items
 
   return (
@@ -41,5 +42,30 @@ export default function TodoInput({ items, onUpdateClick }: Props) {
         </span>
       </label>
     </div>
+  )
+}
+
+type TodoLabelProps = { items: Task }
+export function TodoLabel({ items }: TodoLabelProps) {
+  const { id, title, is_completed } = items
+
+  return (
+    <label
+      htmlFor={id.toString()}
+      className={twJoin(
+        'text-md cursor-pointer font-normal',
+        is_completed && 'text-gray-400 line-through',
+      )}>
+      {title}
+    </label>
+  )
+}
+
+type TodoBtnCloseProps = { onDeleteClick: () => void }
+export function TodoBtnClose({ onDeleteClick }: TodoBtnCloseProps) {
+  return (
+    <button onClick={onDeleteClick}>
+      <Image src={closeIcon} className='text-right hover:scale-110' alt='close icon' />
+    </button>
   )
 }

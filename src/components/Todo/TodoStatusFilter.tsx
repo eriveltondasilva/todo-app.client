@@ -1,5 +1,5 @@
 import { twJoin } from 'tailwind-merge'
-import TodoFooter from './TodoFooter'
+import { TodoFooter } from '../TodoFooter'
 
 export default function TodoStatusFilter() {
   return (
