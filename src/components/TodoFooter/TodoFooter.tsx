@@ -5,7 +5,10 @@ type FooterRootProps = { children: React.ReactNode }
 export function FooterRoot({ children }: FooterRootProps) {
   return (
     <footer
-      className={twJoin('flex w-full items-center justify-between', 'px-5 py-3 text-gray-400')}>
+      className={twJoin(
+        'flex w-full items-center justify-between',
+        'px-5 py-3 text-gray-400',
+      )}>
       {children}
     </footer>
   )

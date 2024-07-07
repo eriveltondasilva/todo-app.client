@@ -40,7 +40,9 @@ export function FormCircle() {
 
 export function FormButton({ disabled = false }) {
   const buttonClasses = twJoin(
-    disabled ? 'cursor-not-allowed opacity-50' : 'border-none hover:font-bold active:scale-90',
+    disabled
+      ? 'cursor-not-allowed opacity-50'
+      : 'border-none hover:font-bold active:scale-90',
   )
 
   return (

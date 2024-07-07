@@ -6,16 +6,23 @@ import type { Task } from '@/types/task'
 import checkIcon from '@/assets/icons/icon-check.svg'
 import closeIcon from '@/assets/icons/icon-cross.svg'
 
-type TodoInputProps = { items: Task; onUpdateClick: () => void }
-export function TodoInput({ items, onUpdateClick }: TodoInputProps) {
-  const { id, is_completed } = items
+export function TodoInput({
+  item,
+  onUpdateClick,
+}: {
+  item: Task
+  onUpdateClick: () => void
+}) {
+  const id = item.id.toString()
 
   return (
     <div className='mr-3 inline-flex items-center'>
-      <label className='relative flex cursor-pointer items-center rounded-full' htmlFor='todo'>
+      <label
+        className='relative flex cursor-pointer items-center rounded-full'
+        htmlFor={id}>
         <input
-          id={id.toString()}
-          defaultChecked={is_completed}
+          id={id}
+          defaultChecked={item.completed} // TODO: change to item.is_completed
           onClick={onUpdateClick}
           type='checkbox'
           className={twJoin(
@@ -45,27 +52,27 @@ export function TodoInput({ items, onUpdateClick }: TodoInputProps) {
   )
 }
 
-type TodoLabelProps = { items: Task }
-export function TodoLabel({ items }: TodoLabelProps) {
-  const { id, title, is_completed } = items
-
+export function TodoLabel({ item }: { item: Task }) {
   return (
     <label
-      htmlFor={id.toString()}
+      htmlFor={item.id.toString()}
       className={twJoin(
         'text-md cursor-pointer font-normal',
-        is_completed && 'text-gray-400 line-through',
+        item.completed && 'text-gray-400 line-through', // TODO: change to item.is_completed
       )}>
-      {title}
+      {item.title}
     </label>
   )
 }
 
-type TodoBtnCloseProps = { onDeleteClick: () => void }
-export function TodoBtnClose({ onDeleteClick }: TodoBtnCloseProps) {
+export function TodoBtnClose({ onDeleteClick }: { onDeleteClick: () => void }) {
   return (
     <button onClick={onDeleteClick}>
-      <Image src={closeIcon} className='text-right hover:scale-110' alt='close icon' />
+      <Image
+        className='text-right hover:scale-110'
+        alt='close icon'
+        src={closeIcon}
+      />
     </button>
   )
 }

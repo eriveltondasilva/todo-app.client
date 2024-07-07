@@ -1,55 +1,28 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import useTaskContext from '@/hooks/useTaskContext'
 
 import { TodoFooter } from '@/components/TodoFooter'
-import { TodoItem } from '@/components/TodoItem'
 import { TodoList } from '@/components/TodoList'
-import TodoRoot from './TodoRoot'
 import TodoStatusFilter from './TodoStatusFilter'
 
-import todos from '@/data.json'
+import { TaskStatus } from '@/types/task'
 
 // ============================================================================
 export default function Todos() {
-  const { tasks, setTasks } = useTaskContext()
-  const [taskFilter, setTaskFilter] = useState<'all' | 'active' | 'completed'>('all')
+  const { tasks, isLoading, setTasks } = useTaskContext()
+  const [taskFilter, setTaskFilter] = useState<TaskStatus>('all')
 
-  useEffect(() => {
-    setTasks(todos)
-  }, [setTasks])
+  async function handleUpdateTask(id: number) {}
 
-  // useEffect(() => {
-  //   async function getAllTasks() {
-  //     const res = await api.getAllTasks()
-  //     setTasks(res.data)
-  //   }
+  async function handleDeleteTask(id: number) {}
 
-  //   getAllTasks()
-  // }, [setTasks])
-
-  // ==================================
-  async function handleUpdateTask(id: number) {
-    // const body = { is_completed: !tasks?.find((item) => item.id === id)?.is_completed }
-    // const task = await api.updateTask(id, body)
-    // if (task?.status !== 200) return
-    // setTasks((prevState) => prevState?.map((item) => (item.id === id ? task?.data : item))!)
-  }
-
-  async function handleDeleteTask(id: number) {
-    // const task = await api.deleteTask(id)
-    // if (task?.status !== 204) return
-    // setTasks((prevState) => prevState?.filter((item) => item.id !== id)!)
-  }
-
-  // ==================================
-
-  const filteredTasks = tasks?.filter((item) => {
-    if (taskFilter === 'all') return true
-    if (taskFilter === 'active') return !item.is_completed
-    if (taskFilter === 'completed') return item.is_completed
-  })
+  // const filteredTasks = tasks?.filter((item) => {
+  //   if (taskFilter === 'all') return true
+  //   if (taskFilter === 'active') return !item.is_completed
+  //   if (taskFilter === 'completed') return item.is_completed
+  // })
 
   async function handleClickAllTasks() {
     setTaskFilter('all')
@@ -69,22 +42,12 @@ export default function Todos() {
     handleClickCompletedTasks,
   }
 
+  if (isLoading || !tasks) return <div>Loading...</div>
+
   return (
     <>
-      <TodoRoot>
-        <TodoList>
-          {filteredTasks?.map((item) => (
-            <TodoItem
-              key={item.id}
-              items={item}
-              onUpdateClick={() => handleUpdateTask(item.id)}
-              onDeleteClick={() => handleDeleteTask(item.id)}
-            />
-          ))}
-        </TodoList>
-        <TodoFooter status={taskFilter} actions={handleActions} />
-      </TodoRoot>
-      {/*  */}
+      <TodoList items={tasks} />
+      <TodoFooter status={taskFilter} actions={handleActions} />
       <TodoStatusFilter />
     </>
   )

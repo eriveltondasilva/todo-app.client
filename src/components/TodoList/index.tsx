@@ -1,3 +1,11 @@
-export function TodoList({ children }: { children: React.ReactNode }) {
-  return <ul className='divide-y divide-gray-200 dark:divide-gray-700'>{children}</ul>
+import { TodoItem } from '@/components/TodoItem'
+import { Task } from '@/types/task'
+import { TodoListRoot } from './TodoList'
+
+export function TodoList({ items }: { items: Task[] | null }) {
+  return (
+    <TodoListRoot>
+      {items?.map((item) => <TodoItem key={item.id} item={item} />)}
+    </TodoListRoot>
+  )
 }

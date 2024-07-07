@@ -11,7 +11,11 @@ type FooterCenterProps = {
 }
 
 // ============================================================================
-export default function FooterCenter({ center, status, actions }: FooterCenterProps) {
+export default function FooterCenter({
+  center,
+  status,
+  actions,
+}: FooterCenterProps) {
   const btn = [
     { title: 'All', onClick: actions?.handleClickAllTasks },
     { title: 'Active', onClick: actions?.handleClickActiveTasks },
@@ -20,9 +24,17 @@ export default function FooterCenter({ center, status, actions }: FooterCenterPr
 
   return (
     <div
-      className={twJoin('space-x-2', center ? 'mx-auto' : 'hidden justify-self-center sm:block')}>
+      className={twJoin(
+        'space-x-2',
+        center ? 'mx-auto' : 'hidden justify-self-center sm:block',
+      )}>
       {btn.map(({ title, onClick }) => (
-        <FooterButton key={title} title={title} status={status} onClick={onClick} />
+        <FooterButton
+          key={title}
+          title={title}
+          status={status}
+          onClick={onClick}
+        />
       ))}
     </div>
   )

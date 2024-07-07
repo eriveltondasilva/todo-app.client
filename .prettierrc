@@ -4,7 +4,7 @@
   "bracketSpacing": true,
   "endOfLine": "lf",
   "jsxSingleQuote": true,
-  "printWidth": 100,
+  "printWidth": 80,
   "semi": false,
   "singleQuote": true,
   "tabWidth": 2,
@@ -21,5 +21,5 @@
   ],
 
   "tailwindFunctions": ["tw", "twJoin", "twMerge"],
-  "plugins": ["prettier-plugin-organize-attributes", "prettier-plugin-tailwindcss"]
+  "plugins": ["prettier-plugin-tailwindcss"]
 }

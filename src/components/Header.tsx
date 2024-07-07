@@ -25,7 +25,9 @@ export default function Header() {
 
   return (
     <header className='flex justify-between'>
-      <h1 className='text-3xl font-semibold tracking-[0.5rem] text-white'>TODO</h1>
+      <h1 className='text-3xl font-semibold tracking-[0.5rem] text-white'>
+        TODO
+      </h1>
       <button onClick={handleClick}>{btnText}</button>
     </header>
   )

@@ -1,18 +1,20 @@
 import type { Task } from '@/types/task'
 import { TodoBtnClose, TodoInput, TodoLabel } from './TodoItem'
 
-type TodoItemProps = {
-  items: Task
+export function TodoItem({
+  item,
+  onUpdateClick,
+  onDeleteClick,
+}: {
+  item: Task
   onUpdateClick: () => void
   onDeleteClick: () => void
-}
-
-export function TodoItem({ items, onUpdateClick, onDeleteClick }: TodoItemProps) {
+}) {
   return (
     <li className='flex items-center justify-between px-5 py-3'>
       <div className='flex items-center'>
-        <TodoInput items={items} onUpdateClick={onUpdateClick} />
-        <TodoLabel items={items} />
+        <TodoInput item={item} onUpdateClick={onUpdateClick} />
+        <TodoLabel item={item} />
       </div>
       <TodoBtnClose onDeleteClick={onDeleteClick} />
     </li>

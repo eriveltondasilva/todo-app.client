@@ -19,11 +19,16 @@ export function TodoFooter({ footerType, status, actions }: Props) {
   async function handleClearCompleted() {
     if (!tasks?.length) return
 
-    const completedTasksIds = tasks?.filter((item) => item.is_completed).map((item) => item.id)
+    const completedTasksIds = tasks
+      ?.filter((item) => item.is_completed)
+      .map((item) => item.id)
 
     if (!completedTasksIds?.length) return
 
-    setTasks((prevState) => prevState?.filter((item) => !completedTasksIds?.includes(item.id))!)
+    setTasks(
+      (prevState) =>
+        prevState?.filter((item) => !completedTasksIds?.includes(item.id))!,
+    )
   }
   // ----------------------------------
 
