@@ -1,21 +1,18 @@
-import type { Task, TaskStatus } from '@/types/task'
+import type { Task } from '@/types/task'
 
-export function taskReducer(state: Task[], action: TaskStatus) {
+export function taskReducer(state: Task[], action: any) {
   switch (action) {
     case 'active':
-      return state?.filter((task) => task.completed === false)
+      console.log('active')
+      return state?.filter((task) => task.completed === false) // TODO: remove
     case 'completed':
-      return state?.filter((task) => task.completed === true)
+      console.log('completed')
+      return state?.filter((task) => task.completed === true) // TODO: remove
     case 'all':
+      console.log('all')
       return state
     //
     default:
       return new Error('No matching action type')
   }
 }
-
-// const filteredTasks = tasks?.filter((item) => {
-//     if (taskFilter === 'all') return true
-//     if (taskFilter === 'active') return !item.completed
-//     if (taskFilter === 'completed') return item.completed
-//   })

@@ -6,7 +6,7 @@ import { FooterLeft, FooterRight, FooterRoot } from './TodoFooter'
 type Props = {
   footerType?: boolean
   status: string
-  onClick: () => void
+  onClick: any
 }
 
 // ==============================================================================

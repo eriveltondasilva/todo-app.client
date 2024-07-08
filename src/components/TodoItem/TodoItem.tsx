@@ -11,7 +11,7 @@ export function TodoInput({
   onUpdateClick,
 }: {
   item: Task
-  onUpdateClick: () => void
+  onUpdateClick?: () => void
 }) {
   const id = item.id.toString()
 
@@ -65,7 +65,11 @@ export function TodoLabel({ item }: { item: Task }) {
   )
 }
 
-export function TodoBtnClose({ onDeleteClick }: { onDeleteClick: () => void }) {
+export function TodoBtnClose({
+  onDeleteClick,
+}: {
+  onDeleteClick?: () => void
+}) {
   return (
     <button onClick={onDeleteClick}>
       <Image

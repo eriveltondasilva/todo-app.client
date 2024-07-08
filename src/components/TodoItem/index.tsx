@@ -7,8 +7,8 @@ export function TodoItem({
   onDeleteClick,
 }: {
   item: Task
-  onUpdateClick: () => void
-  onDeleteClick: () => void
+  onUpdateClick?: () => void
+  onDeleteClick?: () => void
 }) {
   return (
     <li className='flex items-center justify-between px-5 py-3'>
